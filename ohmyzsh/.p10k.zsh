@@ -28,12 +28,51 @@
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
+  # Recursively look for the specified file in the current or parent directory
+  function find_upwards() {
+    local file="$1"
+    local dir="$PWD"
+    while [[ "$dir" != "/" ]]; do
+      if [[ -f "$dir/$file" ]]; then
+        echo "$dir/$file"
+        return 0
+      fi
+      dir=$(dirname "$dir")
+    done
+    return 1
+  }
+
+  # Render python application & interpreter version
+  function prompt_version() {
+    # NOTE: Implement other programing language?
+    local project_file="$(find_upwards pyproject.toml)"
+    local ver=""
+    if [[ -n "$project_file" ]]; then
+      # "version = "で始まる行からバージョン番号を抽出（最初の1件のみ）
+      ver=$(grep -m 1 'version *= *' "$project_file" | sed -E 's/.*version *= *"([^"]+)".*/\1/')
+    fi
+    [[ -n "$ver" ]] && p10k segment -f 250 -t "is" && p10k segment -f 208 -i '📦️' -t "%Bv${ver}%b(python)"
+    [[ -n "$ver" ]] && p10k segment -f 250 -t "via"
+    [[ -n "$(find_upwards .python-version)" ]] && _python_version
+  }
+
+  # Render python version from .python-version
+  function _python_version() {
+    local python_file="$(find_upwards .python-version)"
+    if [[ -n "$python_file" ]]; then
+      local pyver
+      pyver=$(<"$python_file")
+      p10k segment -f 228 -i '🐍' -t "%Bv${pyver}%b"
+    fi
+  }
+
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
+    version                 # python application & interpreter version
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -50,9 +89,9 @@
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
-    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
@@ -348,7 +387,7 @@
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='on \UE0A0 '
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\UE0A0 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -485,7 +524,7 @@
   # Disable the default Git status formatting.
   typeset -g POWERLEVEL9K_VCS_DISABLE_GITSTATUS_FORMATTING=true
   # Install our own Git status formatter.
-  typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION='${$((my_git_formatter(1)))+${my_git_format}}'
+  typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION='%F{250}on%f ${$((my_git_formatter(1)))+${my_git_format}}'
   typeset -g POWERLEVEL9K_VCS_LOADING_CONTENT_EXPANSION='${$((my_git_formatter(0)))+${my_git_format}}'
   # Enable counters for staged, unstaged, etc.
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
