@@ -4,7 +4,7 @@ if [ "$1" = "version-name" ]; then
   if [ -n "$PYENV_VERSION" ]; then
     echo "$PYENV_VERSION"
   else
-    uv run python --version | sed 's/Python //g'
+    uv run python --version | sed -e 's/Python //g' -e 's/^/v/'
   fi
 else
   echo "Unsupported command: $*" >&2
