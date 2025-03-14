@@ -22,3 +22,6 @@ chmod +x ~/.local/bin/pyenv
 
 mkdir ~/.config
 curl https://raw.githubusercontent.com/Di-Is/develop-template/refs/heads/main/starship/starship.toml -Lo ~/.config/starship.toml
+
+mkdir .vscode
+curl https://raw.githubusercontent.com/Di-Is/develop-template/refs/heads/main/vscode/settings.json -Lo .vscode/settings.json
