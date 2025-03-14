@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Dummy pyenv script for starship
+if [[ "$1" == "version-name" ]]; then
+  if [ -n "$PYENV_VERSION" ]; then
+    echo "$PYENV_VERSION"
+  else
+    uv run python --version | sed 's/Python //g'
+  fi
+else
+  echo "Unsupported command: $*" >&2
+  exit 1
+fi
