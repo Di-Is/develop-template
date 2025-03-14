@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # Dummy pyenv script for starship
-if [[ "$1" == "version-name" ]]; then
+if [ "$1" = "version-name" ]; then
   if [ -n "$PYENV_VERSION" ]; then
     echo "$PYENV_VERSION"
   else
