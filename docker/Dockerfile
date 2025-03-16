@@ -1,3 +1,7 @@
+ARG _UV_VERSION=0.6.6
+
+FROM ghcr.io/astral-sh/uv:${_UV_VERSION} AS uv
+
 FROM ubuntu:24.04 AS ubuntu_base
 
 # For Ubuntu 24.04
@@ -16,7 +20,6 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt install -y --no-install-recommends \
         locales \
         locales-all
-
 RUN locale-gen en_US.UTF-8
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
@@ -46,4 +49,8 @@ ENV UV_TOOL_DIR=${_WORKSPACE}/.cache/uv/tool
 ENV UV_TOOL_BIN_DIR=${_WORKSPACE}/.cache/uv/tool_bin
 ENV PATH=${PATH}:${_HOME}/.local/bin:${_WORKSPACE}/.cache/uv/tool_bin
 
-COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /bin/uv
+# Install uv (for devcontainer create postprocess)
+COPY --from=uv /uv /bin/uv
+
+# Install go-task for devcontainer create postprocess
+RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d

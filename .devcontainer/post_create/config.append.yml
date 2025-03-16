@@ -1,9 +1,0 @@
-global:
-  envs:
-
-tasks:
-  - name: setup environment using chezmoi
-    cmds:
-      - .devcontainer/post_create/xx0_chezmoi.sh
-    envs:
-      - GITHUB_USERNAME=Di-Is

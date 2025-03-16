@@ -1,0 +1,26 @@
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task --list-all
+  # Initialize
+  initialize:001_generate_env:
+    cmds:
+      - >-
+        initialize/001_generate_env.sh
+        --debug
+        -o ../docker/.env
+  initialize:002_generate_compose:
+    cmds:
+      - >-
+        initialize/002_generate_compose.sh
+        --debug
+        -o ../docker/compose.devel.yml
+        ../docker/src/base/compose.devel.yml
+        ../docker/src/extend
+
+  # Post create
+  post_create:001_install_pre_commit:
+    cmds:
+      - uv tool install pre-commit

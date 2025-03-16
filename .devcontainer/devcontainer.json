@@ -4,8 +4,8 @@
     "service": "workspace",
     "workspaceFolder": "/home/ubuntu/workspace",
     "updateRemoteUserUID": false,
-    "initializeCommand": ".devcontainer/util/run_scripts.py --debug .devcontainer/initialize/*.yml",
-    "postCreateCommand": ".devcontainer/util/run_scripts.py --debug .devcontainer/post_create/*.yml",
+    "initializeCommand": ".devcontainer/util/run_tasks.sh initialize .devcontainer",
+    "postCreateCommand": ".devcontainer/util/run_tasks.sh post_create .devcontainer",
     "customizations": {
         "vscode": {
             "extensions": [

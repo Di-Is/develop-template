@@ -55,12 +55,12 @@ for path in "${INPUT_PATHS[@]}"; do
     elif [[ -f "$path" ]]; then
         COMPOSE_FILES+=("$path")
     else
-        echo "Warning: '$path' は有効なファイルまたはディレクトリではありません。スキップします。"
+        echo "Warning: '$path' is not a valid file or directory. Skipping."
     fi
 done
 
 if [[ ${#COMPOSE_FILES[@]} -eq 0 ]]; then
-    echo "処理対象となる .yml または .yaml ファイルが見つかりませんでした。"
+    echo "No .yml or .yaml files were found for processing."
     exit 1
 fi
 
