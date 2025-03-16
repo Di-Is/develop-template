@@ -53,4 +53,4 @@ ENV PATH=${PATH}:${_HOME}/.local/bin:${_WORKSPACE}/.cache/uv/tool_bin
 COPY --from=uv /uv /bin/uv
 
 # Install go-task for devcontainer create postprocess
-RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
