@@ -1,1 +1,44 @@
-
+{
+    "name": "python",
+    "dockerComposeFile": "../docker/compose.devel.yml",
+    "service": "workspace",
+    "workspaceFolder": "/home/ubuntu/workspace",
+    "updateRemoteUserUID": false,
+    "initializeCommand": ".devcontainer/util/run_scripts.py --debug .devcontainer/initialize/*.yml",
+    "postCreateCommand": ".devcontainer/util/run_scripts.py --debug .devcontainer/post_create/*.yml",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.debugpy",
+                "njpwerner.autodocstring",
+                "charliermarsh.ruff",
+                "tamasfe.even-better-toml",
+                "redhat.vscode-yaml",
+                "ms-azuretools.vscode-docker",
+                "tekumara.typos-vscode",
+                "eamodio.gitlens"
+            ],
+            "settings": {
+                "autoDocstring.docstringFormat": "google-notypes",
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll.ruff": "explicit",
+                        "source.organizeImports.ruff": "explicit"
+                    },
+                    "editor.formatOnSave": true
+                },
+                "[toml]": {
+                    "editor.defaultFormatter": "tamasfe.even-better-toml",
+                    "editor.formatOnSave": true
+                },
+                "[json][jsonc]": {
+                    "editor.defaultFormatter": "vscode.json-language-features",
+                    "editor.formatOnSave": true
+                },
+                "files.insertFinalNewline": true
+            }
+        }
+    }
+}

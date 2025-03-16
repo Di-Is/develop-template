@@ -1,0 +1,17 @@
+services:
+  workspace:
+    volumes:
+      - type: volume
+        source: dot_local
+        target: /home/ubuntu/.local
+      - type: volume
+        source: apt_list
+        target: /var/lib/apt/lists
+      - type: volume
+        source: apt_cache
+        target: /var/cache/apt/archives
+
+volumes:
+  dot_local:
+  apt_list:
+  apt_cache:

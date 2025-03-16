@@ -1,0 +1,12 @@
+name: $COMPOSE_PROJECT_NAME
+services:
+  workspace:
+    build:
+      context: .
+      args:
+        - DEVEL_USER_ID=$DEVEL_USER_ID
+    volumes:
+      - type: bind
+        source: ..
+        target: /home/ubuntu/workspace
+    tty: true
