@@ -4,8 +4,8 @@
     "service": "workspace",
     "workspaceFolder": "/home/ubuntu/workspace",
     "updateRemoteUserUID": false,
-    "initializeCommand": "task --dir .devcontainer initialize",
-    "onCreateCommand": "task --dir .devcontainer post_create",
+    "initializeCommand": "task initialize",
+    "onCreateCommand": "task post_create",
     "customizations": {
         "vscode": {
             "extensions": [

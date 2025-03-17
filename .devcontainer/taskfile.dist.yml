@@ -2,8 +2,8 @@ version: "3"
 
 tasks:
   default:
-    cmds:
-      - task --list-all --sort alphanumeric
+    cmd: task --list-all --sort alphanumeric
+    desc: List all tasks
 
   # Initialize
   initialize:001_generate_env:
