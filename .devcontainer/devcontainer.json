@@ -4,8 +4,8 @@
     "service": "workspace",
     "workspaceFolder": "/home/ubuntu/workspace",
     "updateRemoteUserUID": false,
-    "initializeCommand": ".devcontainer/util/run_tasks.sh initialize .devcontainer",
-    "postCreateCommand": ".devcontainer/util/run_tasks.sh post_create .devcontainer",
+    "initializeCommand": "task --dir .devcontainer initialize",
+    "onCreateCommand": "task --dir .devcontainer post_create",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -17,6 +17,7 @@
                 "redhat.vscode-yaml",
                 "ms-azuretools.vscode-docker",
                 "tekumara.typos-vscode",
+                "foxundermoon.shell-format",
                 "eamodio.gitlens"
             ],
             "settings": {
@@ -35,6 +36,15 @@
                 },
                 "[json][jsonc]": {
                     "editor.defaultFormatter": "vscode.json-language-features",
+                    "editor.formatOnSave": true,
+                    "editor.detectIndentation": false
+                },
+                "[dockerfile]": {
+                    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+                    "editor.formatOnSave": true
+                },
+                "[shellscript]": {
+                    "editor.defaultFormatter": "foxundermoon.shell-format",
                     "editor.formatOnSave": true
                 },
                 "files.insertFinalNewline": true
