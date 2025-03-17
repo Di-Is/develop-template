@@ -10,6 +10,10 @@ tasks:
     cmd: task --dir .devcontainer initialize
     desc: Initialize command for devcontainer
 
+  devcontainer:on_create:
+    cmd: task --dir .devcontainer on_create
+    desc: On create command for devcontainer
+
   devcontainer:post_create:
     cmd: task --dir .devcontainer post_create
     desc: Post create command for devcontainer

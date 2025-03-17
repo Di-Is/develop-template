@@ -28,6 +28,11 @@ tasks:
       - task: initialize:002_generate_compose
     desc: Initialize command for devcontainer
 
+  # On create
+  on_create:
+    cmd:
+    desc: On create command for devcontainer
+
   # Post create
   post_create:
     task: post_create:001_install_pre_commit
