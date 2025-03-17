@@ -2,16 +2,19 @@ version: "3"
 includes:
   dist:
     taskfile: taskfile.dist.yml
+    flatten: true
+    excludes: ["post_create"]
 
 tasks:
-  default:
-    cmds:
-      - task --list-all
-
   # Post create
-  post_create:1000_setup_chezmoi:
+  post_create:
     cmds:
-      - post_create/1000_setup_chezmoi.sh
+      - task: post_create:001_install_pre_commit
+      - task: post_create:1000_setup_chezmoi
+    desc: Post create command for devcontainer
+
+  post_create:1000_setup_chezmoi:
+    cmd: post_create/1000_setup_chezmoi.sh
     env:
       GITHUB_USERNAME: Di-Is
     desc: Setup dot files & development utilities
