@@ -4,7 +4,14 @@ includes:
     taskfile: taskfile.dist.yml
 
 tasks:
-  # Post create
-  post_create:999_setup_chezmoi:
+  default:
     cmds:
-      - post_create/chezmoi.sh
+      - task --list-all
+
+  # Post create
+  post_create:1000_setup_chezmoi:
+    cmds:
+      - post_create/1000_setup_chezmoi.sh
+    env:
+      GITHUB_USERNAME: Di-Is
+    desc: Setup dot files & development utilities
