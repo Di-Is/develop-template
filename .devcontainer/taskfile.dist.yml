@@ -4,6 +4,7 @@ tasks:
   default:
     cmds:
       - task --list-all
+
   # Initialize
   initialize:001_generate_env:
     cmds:
@@ -11,6 +12,8 @@ tasks:
         initialize/001_generate_env.sh
         --debug
         -o ../docker/.env
+    desc: Generate .env file for compose.yml
+
   initialize:002_generate_compose:
     cmds:
       - >-
@@ -19,8 +22,15 @@ tasks:
         -o ../docker/compose.devel.yml
         ../docker/src/base/compose.devel.yml
         ../docker/src/extend
+    desc: Generate compose.yml for devcontainer
 
   # Post create
   post_create:001_install_pre_commit:
     cmds:
       - uv tool install pre-commit
+    desc: Install pre-commit
+
+  post_create:002_install_keyring:
+    cmds:
+      - uv tool install keyring --with keyrings.alt
+    desc: Install keyring
