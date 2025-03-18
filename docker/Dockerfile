@@ -18,18 +18,19 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache/apt/archives \
     apt install -y --no-install-recommends \
-        locales \
-        locales-all
+    locales \
+    locales-all
 RUN locale-gen en_US.UTF-8
+
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache/apt/archives \
     apt install -y --no-install-recommends \
-        ca-certificates \
-        curl \
-        git \
-        sudo \
-        vim
+    ca-certificates \
+    curl \
+    git \
+    sudo \
+    vim
 
 ARG DEVEL_USER_ID=1000
 ARG _USERNAME=ubuntu
