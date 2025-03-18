@@ -12,6 +12,7 @@
             "extensions": [
                 "ms-python.python",
                 "ms-python.debugpy",
+                "ms-toolsai.jupyter",
                 "njpwerner.autodocstring",
                 "charliermarsh.ruff",
                 "tamasfe.even-better-toml",
@@ -19,7 +20,8 @@
                 "ms-azuretools.vscode-docker",
                 "tekumara.typos-vscode",
                 "foxundermoon.shell-format",
-                "eamodio.gitlens"
+                "eamodio.gitlens",
+                "task.vscode-task"
             ],
             "settings": {
                 "autoDocstring.docstringFormat": "google-notypes",
