@@ -3,17 +3,17 @@ includes:
   dist:
     taskfile: taskfile.dist.yml
     flatten: true
-    excludes: ["on_create"]
+    excludes: ["post_create"]
 
 tasks:
   # Post create
-  on_create:
+  post_create:
     cmds:
-      - task: on_create:1000_setup_chezmoi
+      - task: post_create:1000_setup_chezmoi
     desc: On create command for devcontainer
 
-  on_create:1000_setup_chezmoi:
-    cmd: on_create/1000_setup_chezmoi.sh
+  post_create:1000_setup_chezmoi:
+    cmd: post_create/1000_setup_chezmoi.sh
     env:
       GITHUB_USERNAME: Di-Is
     desc: Setup dot files & development utilities
