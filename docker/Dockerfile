@@ -51,7 +51,7 @@ ENV UV_TOOL_BIN_DIR=${_WORKSPACE}/.cache/uv/tool_bin
 ENV PATH=${PATH}:${_HOME}/.local/bin:${_WORKSPACE}/.cache/uv/tool_bin
 
 # Install uv (for devcontainer create postprocess)
-COPY --from=uv /uv /bin/uv
+COPY --from=uv /uv /uvx /bin/
 
 # Install go-task for devcontainer create postprocess
 RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
