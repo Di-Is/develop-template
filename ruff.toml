@@ -1,0 +1,41 @@
+line-length = 99
+indent-width = 4
+
+[lint]
+select = ["ALL"]
+fixable = ["ALL"]
+ignore = [
+    # ...: use ruff formatter
+    "W191",
+    "E111",
+    "E114",
+    'E117',
+    "D206",
+    "D300",
+    "Q000",
+    "Q001",
+    "Q002",
+    'Q003',
+    "COM812",
+    "COM819",
+    "ISC002",
+    # incorrect-blank-line-before-class/multi-line-summary-second-line: use google style docstring
+    "D203",
+    "D213",
+    # line-too-long: to avoid long strings detecttion.
+    "E501",
+    # shebang-missing-python: uv incompatible legacy rule.
+    "EXE003",
+    # line-contains-todo/missing-todo-link: too high cost
+    "FIX002",
+    "TD003",
+]
+
+[format]
+docstring-code-format = true
+quote-style = "double"
+indent-style = "space"
+
+[lint.extend-per-file-ignores]
+"__init__.py" = ["E402"]
+"**/tests/*.py" = ["S101", "ANN201", "INP001"]
