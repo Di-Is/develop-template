@@ -22,10 +22,15 @@ tasks:
       ../docker/src/extend
     desc: Generate compose.yml for devcontainer
 
+  initialize:003_generate_compose:
+    cmd: initialize/003_check_project.sh ../docker/compose.devel.yml
+    desc: Check docker compose project override
+
   initialize:
     cmds:
       - task: initialize:001_generate_env
       - task: initialize:002_generate_compose
+      - task: initialize:003_generate_compose
     desc: Initialize command for devcontainer
 
   # On create
