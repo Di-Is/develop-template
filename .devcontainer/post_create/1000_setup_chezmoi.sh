@@ -2,7 +2,9 @@
 
 # escape volume mount error
 sudo mkdir -p /home/ubuntu/.local
-sudo chown `id -u`:`id -g` -R /home/ubuntu/.local
+sudo mkdir -p /home/ubuntu/.config
+sudo chown $(id -u):$(id -g) -R /home/ubuntu/.local
+sudo chown $(id -u):$(id -g) -R /home/ubuntu/.config
 
 if ! command -v chezmoi >/dev/null 2>&1; then
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin

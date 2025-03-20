@@ -5,6 +5,9 @@ services:
         source: dot_local
         target: /home/ubuntu/.local
       - type: volume
+        source:  dot_config
+        target: /home/ubuntu/.config
+      - type: volume
         source: apt_list
         target: /var/lib/apt/lists
       - type: volume
@@ -13,5 +16,6 @@ services:
 
 volumes:
   dot_local:
+  dot_config:
   apt_list:
   apt_cache:
