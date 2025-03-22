@@ -14,11 +14,11 @@ tasks:
     desc: Generate .env file for compose.yml
     cmds:
       - echo "COMPOSE_PROJECT_NAME={{ .COMPOSE_PROJECT_NAME }}" > .env
-      - echo "DEVEL_USER_ID={{ .DEVEL_USER_ID }}" >> .env
+      - echo "USER_ID={{ .USER_ID }}" >> .env
     vars:
       COMPOSE_PROJECT_NAME:
         sh: echo "$(basename -s .git $(git config --get remote.origin.url))-$(id -un)"
-      DEVEL_USER_ID:
+      USER_ID:
         sh: id -u
 
   initialize:002_generate_compose:

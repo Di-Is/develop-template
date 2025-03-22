@@ -3,7 +3,7 @@ services:
   workspace:
     build:
       args:
-        - DEVEL_USER_ID=$DEVEL_USER_ID
+        - USER_ID=$USER_ID
     volumes:
       - type: bind
         source: ..

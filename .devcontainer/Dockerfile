@@ -32,13 +32,13 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     sudo \
     vim
 
-ARG DEVEL_USER_ID
+ARG USER_ID
 ARG _USERNAME=ubuntu
 ARG _HOME=/home/${_USERNAME}
 ARG _WORKSPACE=${_HOME}/workspace
 
-RUN groupadd -g $DEVEL_USER_ID $_USERNAME && \
-    useradd -m -u $DEVEL_USER_ID -g $DEVEL_USER_ID -s /bin/bash $_USERNAME
+RUN groupadd -g $USER_ID $_USERNAME && \
+    useradd -m -u $USER_ID -g $USER_ID -s /bin/bash $_USERNAME
 RUN echo "$_USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER ${_USERNAME}

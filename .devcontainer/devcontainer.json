@@ -2,6 +2,7 @@
     "name": "workspace",
     "dockerComposeFile": "compose.yml",
     "service": "workspace",
+    "updateRemoteUserUID": false,
     "workspaceFolder": "/home/ubuntu/workspace",
     "initializeCommand": "task devcontainer:initialize",
     "onCreateCommand": "task devcontainer:on_create",
