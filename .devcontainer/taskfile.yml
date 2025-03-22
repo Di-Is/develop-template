@@ -5,6 +5,8 @@ includes:
     flatten: true
     excludes: ["post_create"]
 
+dotenv: [".env"]
+
 tasks:
   # Post create
   post_create:
@@ -13,7 +15,5 @@ tasks:
     desc: On create command for devcontainer
 
   post_create:1000_setup_chezmoi:
-    cmd: post_create/1000_setup_chezmoi.sh
-    env:
-      GITHUB_USERNAME: Di-Is
-    desc: Setup dot files & development utilities
+    # setup dotfiles & dev utils
+    cmd: post_create/1000_setup_chezmoi.sh ${GITHUB_USERNAME}'
