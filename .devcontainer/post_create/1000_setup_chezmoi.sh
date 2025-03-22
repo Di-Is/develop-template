@@ -9,10 +9,10 @@ fi
 GITHUB_USERNAME=$1
 
 # Create necessary directories and adjust permissions to avoid volume mount errors
-sudo mkdir -p /home/ubuntu/.local
-sudo mkdir -p /home/ubuntu/.config
-sudo chown $(id -u):$(id -g) -R /home/ubuntu/.local
-sudo chown $(id -u):$(id -g) -R /home/ubuntu/.config
+sudo mkdir -p ${HOME}/.local
+sudo mkdir -p ${HOME}/.config
+sudo chown -R $(id -u):$(id -g) ${HOME}/.local
+sudo chown -R $(id -u):$(id -g) ${HOME}/.config
 
 # Reset cache
 chezmoi state reset --force
