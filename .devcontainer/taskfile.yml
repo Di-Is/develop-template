@@ -16,4 +16,4 @@ tasks:
 
   post_create:1000_setup_chezmoi:
     # setup dotfiles & dev utils
-    cmd: post_create/1000_setup_chezmoi.sh ${GITHUB_USERNAME}'
+    cmd: post_create/1000_setup_chezmoi.sh ${GITHUB_USERNAME}
