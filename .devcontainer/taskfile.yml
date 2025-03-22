@@ -12,6 +12,7 @@ tasks:
   # Post create
   post_create:
     cmds:
+      - task: post_create:001_install_pre_commit
       - task: post_create:1000_setup_chezmoi
     desc: On create command for devcontainer
 
