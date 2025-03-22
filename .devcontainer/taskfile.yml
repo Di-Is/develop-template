@@ -5,6 +5,7 @@ includes:
     flatten: true
     excludes: ["post_create"]
 
+# use for chezmoi(GITHUB_UERNAME) & mise(GITHUB_TOKEN)
 dotenv: [".env"]
 
 tasks:
