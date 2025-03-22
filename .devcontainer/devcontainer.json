@@ -1,9 +1,8 @@
 {
-    "name": "python",
-    "dockerComposeFile": "../docker/compose.devel.yml",
+    "name": "workspace",
+    "dockerComposeFile": "compose.yml",
     "service": "workspace",
     "workspaceFolder": "/home/ubuntu/workspace",
-    "updateRemoteUserUID": false,
     "initializeCommand": "task devcontainer:initialize",
     "onCreateCommand": "task devcontainer:on_create",
     "postCreateCommand": "task devcontainer:post_create",

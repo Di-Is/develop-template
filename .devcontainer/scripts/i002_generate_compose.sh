@@ -7,9 +7,9 @@ fi
 
 # Display usage
 usage() {
-    echo "Usage: $0 -o output.yml [-d] file_or_directory1 file_or_directory2 ..."
+    echo "Usage: $0 -o output.yml [-v] file_or_directory1 file_or_directory2 ..."
     echo "  -o, --output   Specify the output file"
-    echo "  -d, --debug    Print the generated compose.yml to stdout before writing to file"
+    echo "  -v, --verbose    Print the generated compose.yml to stdout before writing to file"
     exit 1
 }
 
@@ -24,7 +24,7 @@ while [[ $# -gt 0 ]]; do
         OUTPUT="$2"
         shift 2
         ;;
-    -d | --debug)
+    -v | --verbose)
         DEBUG=true
         shift
         ;;

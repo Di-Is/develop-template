@@ -32,7 +32,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     sudo \
     vim
 
-ARG DEVEL_USER_ID=1000
+ARG DEVEL_USER_ID
 ARG _USERNAME=ubuntu
 ARG _HOME=/home/${_USERNAME}
 ARG _WORKSPACE=${_HOME}/workspace
@@ -49,6 +49,8 @@ ENV UV_PYTHON_INSTALL_DIR=${_WORKSPACE}/.cache/uv/python
 ENV UV_TOOL_DIR=${_WORKSPACE}/.cache/uv/tool
 ENV UV_TOOL_BIN_DIR=${_WORKSPACE}/.cache/uv/tool_bin
 ENV PATH=${PATH}:${_HOME}/.local/bin:${_WORKSPACE}/.cache/uv/tool_bin
+
+RUN mkdir ${_HOME}/.vscode-server
 
 # Install uv (for devcontainer create postprocess)
 COPY --from=uv /uv /uvx /usr/local/bin/

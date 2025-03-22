@@ -14,14 +14,11 @@ sudo mkdir -p ${HOME}/.config
 sudo chown -R $(id -u):$(id -g) ${HOME}/.local
 sudo chown -R $(id -u):$(id -g) ${HOME}/.config
 
-# Reset cache
-chezmoi state reset --force
-
 if ! command -v chezmoi >/dev/null 2>&1; then
     # Install chezmoi if not available and initialize with the provided GitHub username
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
     chezmoi init --apply "${GITHUB_USERNAME}"
 else
-    # Update chezmoi if it is already installed
+    chezmoi state reset --force
     chezmoi update
 fi
