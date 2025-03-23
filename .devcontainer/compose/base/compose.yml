@@ -5,9 +5,11 @@ services:
       args:
         - USER_ID=$USER_ID
     volumes:
+      # Workspace
       - type: bind
         source: ..
         target: /home/ubuntu/workspace
+      # dot directories
       - type: volume
         source: dot_local
         target: /home/ubuntu/.local
