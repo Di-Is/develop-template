@@ -1,6 +1,14 @@
 [tools]
 uv = "0.6.9"
 
+[env]
+# consolidate uv-related cache in workspace for hardlink in container
+UV_CACHE_DIR = "{{cwd}}/.cache/uv/cache"
+UV_PYTHON_INSTALL_DIR = "{{cwd}}/.cache/uv/python"
+UV_TOOL_DIR = "{{cwd}}/.cache/uv/tool"
+UV_TOOL_BIN_DIR = "{{cwd}}/.cache/uv/tool_bin"
+_.path = ["{{cwd}}/.cache/uv/tool_bin"]
+
 [settings]
 # python management is transferred to uv
 disable_tools = ["python"]

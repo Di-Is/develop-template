@@ -32,6 +32,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 RUN curl https://mise.run | MISE_INSTALL_PATH="/usr/local/bin/mise" sh
 RUN mkdir -p /etc/mise && \
     echo "[settings]\ntrusted_config_paths = ['~/']" > /etc/mise/config.toml
+RUN echo 'eval "$(mise activate bash)"' >> /etc/bash.bashrc
 
 ARG USER_ID
 ARG _USERNAME=ubuntu
@@ -45,10 +46,6 @@ RUN echo "$_USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER ${_USERNAME}
 WORKDIR ${_WORKSPACE}
 
-ENV UV_CACHE_DIR=${_WORKSPACE}/.cache/uv/cache
-ENV UV_PYTHON_INSTALL_DIR=${_WORKSPACE}/.cache/uv/python
-ENV UV_TOOL_DIR=${_WORKSPACE}/.cache/uv/tool
-ENV UV_TOOL_BIN_DIR=${_WORKSPACE}/.cache/uv/tool_bin
-ENV PATH=${PATH}:${_HOME}/.local/bin:${_WORKSPACE}/.cache/uv/tool_bin
+ENV PATH=${PATH}:${_HOME}/.local/bin
 
 RUN mkdir ${_HOME}/.vscode-server ${_HOME}/.local ${_HOME}/.config
