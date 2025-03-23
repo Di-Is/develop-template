@@ -1,6 +1,10 @@
 [tools]
 uv = "0.6.9"
 
+[settings]
+# python management is transferred to uv
+disable_tools = ["python"]
+
 [vars]
 OUTPUT_COMPOSE_FILE = ".devcontainer/compose.yml"
 
