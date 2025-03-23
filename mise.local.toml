@@ -1,7 +1,7 @@
 
 [tasks.dc-post_create]
 run = [
-    "mise run dc-post_create-001_install_development_uitls",
+    "mise run dc-post_create-001_install_development_utils",
     "mise run dc-post-create-002_install_pre_commit",
     "mise run dc-post-create-003_install_pre_commit_hook",
     "mise run dc-post_create-1000_setup_chezmoi",
