@@ -1,7 +1,0 @@
-version: "3"
-includes:
-  dist:
-    taskfile: taskfile.dist.yml
-    flatten: true
-
-tasks:

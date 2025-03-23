@@ -1,7 +1,3 @@
-ARG _UV_VERSION=0.6.6
-
-FROM ghcr.io/astral-sh/uv:${_UV_VERSION} AS uv
-
 FROM ubuntu:24.04 AS ubuntu_base
 
 # For Ubuntu 24.04
@@ -32,6 +28,11 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     sudo \
     vim
 
+# Install mise (for uv management)
+RUN curl https://mise.run | MISE_INSTALL_PATH="/usr/local/bin/mise" sh
+COPY mise/999-mise.sh /etc/profile.d/999-mise.sh
+COPY mise/config.toml /etc/mise/config.toml
+
 ARG USER_ID
 ARG _USERNAME=ubuntu
 ARG _HOME=/home/${_USERNAME}
@@ -50,10 +51,4 @@ ENV UV_TOOL_DIR=${_WORKSPACE}/.cache/uv/tool
 ENV UV_TOOL_BIN_DIR=${_WORKSPACE}/.cache/uv/tool_bin
 ENV PATH=${PATH}:${_HOME}/.local/bin:${_WORKSPACE}/.cache/uv/tool_bin
 
-RUN mkdir ${_HOME}/.vscode-server
-
-# Install uv (for devcontainer create postprocess)
-COPY --from=uv /uv /uvx /usr/local/bin/
-
-# Install go-task for devcontainer create postprocess
-RUN sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin/
+RUN mkdir ${_HOME}/.vscode-server ${_HOME}/.local ${_HOME}/.config

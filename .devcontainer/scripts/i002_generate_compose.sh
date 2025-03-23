@@ -1,4 +1,5 @@
 #!/bin/bash
+#MISE dir=["target/debug/mycli"]
 
 if ! command -v docker >/dev/null 2>&1; then
     echo "Error: docker command not found. Please install docker."
