@@ -22,6 +22,7 @@ description = "Generate .env file for compose.yml"
 run = [
     'echo "COMPOSE_PROJECT_NAME=$(echo "$(basename -s .git $(git config --get remote.origin.url))-$(git branch --show-current)-$(id -un)")" > .devcontainer/.env',
     'echo "USER_ID=$(id -u)" >> .devcontainer/.env',
+    'cat .devcontainer/.env',
 ]
 
 [tasks.dc-init-002_generate_compose]
