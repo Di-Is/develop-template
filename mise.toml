@@ -43,7 +43,7 @@ run = '.devcontainer/scripts/i003_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
 
 
 # devcontainer post_create command task
-[tasks.dc-post_create-001_install_development_uitls]
+[tasks.dc-post_create-001_install_development_utils]
 description = "Install Development utils using mise"
 run = 'mise install'
 
@@ -57,7 +57,7 @@ run = 'pre-commit install'
 
 [tasks.dc-post_create]
 run = [
-    "mise run dc-post_create-001_install_development_uitls",
+    "mise run dc-post_create-001_install_development_utils",
     "mise run dc-post-create-002_install_pre_commit",
     "mise run dc-post-create-003_install_pre_commit_hook",
 ]
