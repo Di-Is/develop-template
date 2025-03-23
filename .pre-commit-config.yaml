@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: static-analysis
+        name: static-analysis
+        entry: mise run 'check-*'
+        pass_filenames: false
+        language: system
+      - id: test-unit
+        name: test-unit
+        entry: mise run 'test-unit'
+        pass_filenames: false
+        language: system

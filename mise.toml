@@ -49,3 +49,18 @@ run = [
     "mise run dc-post-create-003_install_pre_commit_hook",
 ]
 description = "Post create command for devcontainer"
+
+# static-analysis
+[tasks.check-lint]
+[tasks.check-format]
+[tasks.check-type]
+[tasks.check-typo]
+
+# static-analysis fix
+[tasks.fix-lint]
+[tasks.fix-format]
+[tasks.fix-type]
+[tasks.fix-typo]
+
+# test
+[tasks.test-unit]
