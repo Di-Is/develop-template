@@ -20,7 +20,7 @@
                 "tekumara.typos-vscode",
                 "foxundermoon.shell-format",
                 "eamodio.gitlens",
-                "task.vscode-task"
+                "hverlin.mise-vscode"
             ],
             "settings": {
                 "autoDocstring.docstringFormat": "google-notypes",
