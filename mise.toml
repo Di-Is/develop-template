@@ -4,48 +4,48 @@ uv = "0.6.9"
 [vars]
 OUTPUT_COMPOSE_FILE = ".devcontainer/compose.yml"
 
-# devcontainer task
-[tasks.devcon-init]
+# devcontainer initialize command task
+[tasks.dc-init]
 run = [
-    "mise run devcon-init-001_generate_env",
-    "mise run devcon-init-002_generate_compose",
-    "mise run devcon-init-003_check_project",
+    "mise run dc-init-001_generate_env",
+    "mise run dc-init-002_generate_compose",
+    "mise run dc-init-003_check_project",
 ]
 description = "Initialize command for devcontainer"
 
-[tasks.devcon-init-001_generate_env]
+[tasks.dc-init-001_generate_env]
 description = "Generate .env file for compose.yml"
 run = [
     'echo "COMPOSE_PROJECT_NAME=$(echo "$(basename -s .git $(git config --get remote.origin.url))-$(git branch --show-current)-$(id -un)")" > .devcontainer/.env',
     'echo "USER_ID=$(id -u)" >> .devcontainer/.env',
 ]
 
-[tasks.devcon-init-002_generate_compose]
+[tasks.dc-init-002_generate_compose]
 description = "Generate compose.yml for devcontainer"
 run = '.devcontainer/scripts/i002_generate_compose.sh --verbose -o {{vars.OUTPUT_COMPOSE_FILE}} .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
 
-[tasks.devcon-init-003_check_project]
+[tasks.dc-init-003_check_project]
 description = "Check docker compose project override"
 run = '.devcontainer/scripts/i003_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
 
 
-[tasks.devcon-post_create-001_install_development_uitls]
+# devcontainer post_create command task
+[tasks.dc-post_create-001_install_development_uitls]
 description = "Install Development utils using mise"
 run = 'mise install'
 
-[tasks.devcon-post-create-002_install_pre_commit]
+[tasks.dc-post-create-002_install_pre_commit]
 description = "Install pre-commit"
 run = 'uv tool install pre-commit'
 
-[tasks.devcon-post-create-003_install_pre_commit_hook]
+[tasks.dc-post-create-003_install_pre_commit_hook]
 description = "Install pre-commit hook"
 run = 'pre-commit install'
 
-
-[tasks.devcon-post_create]
+[tasks.dc-post_create]
 run = [
-    "mise run devcon-post_create-001_install_development_uitls",
-    "mise run devcon-post-create-002_install_pre_commit",
-    "mise run devcon-post-create-003_install_pre_commit_hook",
+    "mise run dc-post_create-001_install_development_uitls",
+    "mise run dc-post-create-002_install_pre_commit",
+    "mise run dc-post-create-003_install_pre_commit_hook",
 ]
 description = "Post create command for devcontainer"
