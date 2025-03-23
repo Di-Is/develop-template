@@ -30,8 +30,8 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 
 # Install mise (for uv management)
 RUN curl https://mise.run | MISE_INSTALL_PATH="/usr/local/bin/mise" sh
-COPY mise/999-mise.sh /etc/profile.d/999-mise.sh
-COPY mise/config.toml /etc/mise/config.toml
+RUN mkdir -p /etc/mise && \
+    echo "[settings]\ntrusted_config_paths = ['~/']" > /etc/mise/config.toml
 
 ARG USER_ID
 ARG _USERNAME=ubuntu
