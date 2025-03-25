@@ -7,9 +7,6 @@ services:
       - type: volume
         source: apt_cache
         target: /var/cache/apt/archives
-      - type: volume
-        source: dot_zi
-        target: /home/ubuntu/.zi
     env_file:
       - path: .devcontainer.env
         required: false
@@ -17,4 +14,3 @@ services:
 volumes:
   apt_list:
   apt_cache:
-  dot_zi:
