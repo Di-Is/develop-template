@@ -35,11 +35,11 @@ run = [
 
 [tasks.dc-init-002_generate_compose]
 description = "Generate compose.yml for devcontainer"
-run = '.devcontainer/scripts/i002_generate_compose.sh --verbose -o {{vars.OUTPUT_COMPOSE_FILE}} .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
+run = '.devcontainer/scripts/i_generate_compose.sh --verbose -o {{vars.OUTPUT_COMPOSE_FILE}} .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
 
 [tasks.dc-init-003_check_project]
 description = "Check docker compose project override"
-run = '.devcontainer/scripts/i003_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
+run = '.devcontainer/scripts/i_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
 
 
 # devcontainer post_create command task
