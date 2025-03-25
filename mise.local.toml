@@ -21,7 +21,7 @@ fi
 description = "Install zsh"
 
 [tasks.dc-post_create-1001_chown_volume_mount]
-run = ["sudo chown $(id -u):$(id -g) -R ~/.zi"]
+run = ["sudo chown $(id -u):$(id -g) -R ~/.zi ~/.local ~/.config"]
 description = "Chown volume mount dir"
 
 [tasks.dc-post_create-1002_setup_chezmoi]

@@ -8,10 +8,6 @@ fi
 
 GITHUB_USERNAME=$1
 
-# Create necessary directories and adjust permissions to avoid volume mount errors
-sudo mkdir -p ${HOME}/.local ${HOME}/.config
-sudo chown -R $(id -u):$(id -g) ${HOME}/.local ${HOME}/.config
-
 if ! command -v chezmoi >/dev/null 2>&1; then
     # Install chezmoi if not available and initialize with the provided GitHub username
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
