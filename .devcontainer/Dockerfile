@@ -9,6 +9,10 @@ RUN sed -i.bak -r 's@http://(jp\.)?archive\.ubuntu\.com/ubuntu/?@http://ftp.udx.
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache/apt/archives \
     apt update && \
+    apt update install -y ca-certificates
+
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache/apt/archives \
     apt upgrade -y
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
@@ -18,11 +22,9 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     locales-all
 RUN locale-gen en_US.UTF-8
 
-
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache/apt/archives \
     apt install -y --no-install-recommends \
-    ca-certificates \
     curl \
     git \
     sudo \
