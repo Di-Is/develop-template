@@ -9,7 +9,7 @@ RUN sed -i.bak -r 's@http://(jp\.)?archive\.ubuntu\.com/ubuntu/?@http://ftp.udx.
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache/apt/archives \
     apt update && \
-    apt update install -y --no-install-recommends ca-certificates
+    apt install -y --no-install-recommends ca-certificates
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache/apt/archives \
