@@ -5,7 +5,8 @@
     "updateRemoteUserUID": false,
     "workspaceFolder": "/home/ubuntu/workspace",
     "initializeCommand": "mise run dc-init",
-    "postCreateCommand": "mise run dc-post_create",
+    // `RAYON_NUM_THREADS` is tips to avoid hang up mise installation
+    "postCreateCommand": "RAYON_NUM_THREADS=4 mise run dc-post_create",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -49,7 +50,8 @@
                     "editor.defaultFormatter": "foxundermoon.shell-format",
                     "editor.formatOnSave": true
                 },
-                "files.insertFinalNewline": true
+                "files.insertFinalNewline": true,
+                "mise.configureExtensionsAutomatically": false
             }
         }
     }
