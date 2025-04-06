@@ -1,4 +1,5 @@
 [tools]
+"ubi:j178/prefligit" = "latest"
 uv = "0.6.9"
 
 [env]
@@ -43,24 +44,12 @@ run = '.devcontainer/scripts/i_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
 
 
 # devcontainer post_create command task
-[tasks.dc-post_create-001_install_development_utils]
-description = "Install Development utils using mise"
-run = 'mise install'
-
-[tasks.dc-post-create-002_install_pre_commit]
-description = "Install pre-commit"
-run = 'uv tool install pre-commit'
-
-[tasks.dc-post-create-003_install_pre_commit_hook]
+[tasks.dc-post_create-001_install_pre_commit_hook]
 description = "Install pre-commit hook"
-run = 'pre-commit install'
+run = 'prefligit install'
 
 [tasks.dc-post_create]
-run = [
-    "mise run dc-post_create-001_install_development_utils",
-    "mise run dc-post-create-002_install_pre_commit",
-    "mise run dc-post-create-003_install_pre_commit_hook",
-]
+run = ["mise run dc-post_create-001_install_pre_commit_hook"]
 description = "Post create command for devcontainer"
 
 # static-analysis
@@ -68,12 +57,14 @@ description = "Post create command for devcontainer"
 [tasks.check-format]
 [tasks.check-type]
 [tasks.check-typo]
+run = "typos"
 
 # static-analysis fix
 [tasks.fix-lint]
 [tasks.fix-format]
 [tasks.fix-type]
 [tasks.fix-typo]
+run = "typos -w"
 
 # test
 [tasks.test-unit]
