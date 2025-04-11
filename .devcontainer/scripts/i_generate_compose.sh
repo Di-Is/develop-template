@@ -1,5 +1,4 @@
 #!/bin/bash
-#MISE dir=["target/debug/mycli"]
 
 if ! command -v docker >/dev/null 2>&1; then
     echo "Error: docker command not found. Please install docker."
@@ -9,18 +8,41 @@ fi
 # Display usage
 usage() {
     echo "Usage: $0 -o output.yml [-v] file_or_directory1 file_or_directory2 ..."
+    echo "  -p, --project_name   Specify docker compose project name"
+    echo "  -u, --user_id   Specify user id for user of devcontainer"
     echo "  -o, --output   Specify the output file"
     echo "  -v, --verbose    Print the generated compose.yml to stdout before writing to file"
     exit 1
 }
 
 # Parse arguments
+if command -v git >/dev/null 2>&1; then
+    remote_url=$(git config --get remote.origin.url 2>/dev/null)
+    branch=$(git branch --show-current 2>/dev/null)
+    if [ -n "$remote_url" ] && [ -n "$branch" ]; then
+        base=$(basename -s .git "$remote_url")
+        PROJECT_NAME="${base}-${branch}-$(id -un)"
+    else
+        PROJECT_NAME="devcontainer-$(id -un)"
+    fi
+else
+    PROJECT_NAME="devcontainer-$(id -un)"
+fi
+USER_ID=$(id -u)
 OUTPUT=""
 DEBUG=false
 INPUT_PATHS=()
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
+    -p | --project_name)
+        PROJECT_NAME="$2"
+        shift 2
+        ;;
+    -u | --user_id)
+        OUTPUT="$2"
+        shift 2
+        ;;
     -o | --output)
         OUTPUT="$2"
         shift 2
@@ -72,7 +94,7 @@ for file in "${COMPOSE_FILES[@]}"; do
 done
 
 # Execute docker compose config and capture the result
-MERGED_COMPOSE=$(docker compose "${COMPOSE_ARGS[@]}" config --no-normalize --no-interpolate --no-path-resolution)
+MERGED_COMPOSE=$(USER_ID="${USER_ID}" docker compose --project-name "${PROJECT_NAME}" "${COMPOSE_ARGS[@]}" config --no-normalize --no-path-resolution)
 
 # Check if the command succeeded
 if [[ $? -ne 0 ]]; then
