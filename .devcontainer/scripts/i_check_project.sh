@@ -8,6 +8,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 YML_FILE="$1"
+YML_PROJECT_NAME=$(cat $YML_FILE | grep '^name: ')
 
 # Verify that the specified YAML file exists
 if [ ! -f "$YML_FILE" ]; then
@@ -18,17 +19,12 @@ fi
 # Determine the project directory from the YAML file's location
 PROJECT_DIR=$(dirname "$YML_FILE")
 
-# If a .env file exists in the directory, load it (docker compose auto-loads .env in the same directory)
-if [ -f "$PROJECT_DIR/.env" ]; then
-    set -a
-    source "$PROJECT_DIR/.env"
-    set +a
-fi
-
 # Docker compose uses the COMPOSE_PROJECT_NAME environment variable if set;
 # otherwise, it defaults to the name of the directory.
 if [ -n "$COMPOSE_PROJECT_NAME" ]; then
     PROJECT_NAME="$COMPOSE_PROJECT_NAME"
+elif [ -n "$YML_PROJECT_NAME" ]; then
+    PROJECT_NAME="$YML_PROJECT_NAME"
 else
     PROJECT_NAME=$(basename "$PROJECT_DIR")
 fi
@@ -36,7 +32,7 @@ fi
 echo "Using project name: $PROJECT_NAME"
 
 # Check if a project with the same name already exists by looking for running containers
-EXISTING_CONTAINERS=$(docker compose -p "$PROJECT_NAME" ps -q)
+EXISTING_CONTAINERS=$(docker compose -p "$PROJECT_NAME" ls -q)
 
 if [ -n "$EXISTING_CONTAINERS" ]; then
     echo "Project '$PROJECT_NAME' already exists."
