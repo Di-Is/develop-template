@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: check lint
+      run: mise run check-lint
+    - name: check format
+      run: mise run check-format
+    - name: check typo
+      run: mise run check-typo

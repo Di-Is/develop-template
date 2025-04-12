@@ -1,5 +1,5 @@
 [tools]
-"ubi:j178/prefligit" = "latest"
+lefthook = 'latest'
 uv = "0.6.9"
 
 [env]
@@ -38,7 +38,7 @@ run = [
 description = "Generate compose.yml for devcontainer"
 run = '.devcontainer/scripts/i_generate_compose.sh --verbose -o {{vars.OUTPUT_COMPOSE_FILE}} .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
 
-[tasks.dc-init-003_check_project]
+[tasks.dc-init-002_check_project]
 description = "Check docker compose project override"
 run = '.devcontainer/scripts/i_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
 
@@ -46,7 +46,7 @@ run = '.devcontainer/scripts/i_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
 # devcontainer post_create command task
 [tasks.dc-post_create-001_install_pre_commit_hook]
 description = "Install pre-commit hook"
-run = 'prefligit install'
+run = 'lefthook install'
 
 [tasks.dc-post_create]
 run = ["mise run dc-post_create-001_install_pre_commit_hook"]
