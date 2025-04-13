@@ -41,8 +41,8 @@ ARG _USERNAME=ubuntu
 ARG _HOME=/home/${_USERNAME}
 ARG _WORKSPACE=${_HOME}/workspace
 
-RUN groupadd -g $USER_ID $_USERNAME && \
-    useradd -m -u $USER_ID -g $USER_ID -s /bin/bash $_USERNAME
+RUN groupadd -g ${USER_ID} ${_USERNAME} && \
+    useradd -m -u ${USER_ID} -g ${USER_ID} -s /bin/bash ${_USERNAME}
 RUN echo "$_USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER ${_USERNAME}
