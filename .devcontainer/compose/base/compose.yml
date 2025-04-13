@@ -1,4 +1,3 @@
-name: $COMPOSE_PROJECT_NAME
 services:
   workspace:
     build:
