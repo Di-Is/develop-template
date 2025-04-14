@@ -19,20 +19,12 @@ OUTPUT_COMPOSE_FILE = ".devcontainer/compose.yml"
 
 # devcontainer initialize command task
 [tasks.dc-init]
-run = [
-    "mise run dc-init-001_generate_compose",
-    "mise run dc-init-002_check_project",
-]
+run = ["mise run dc-init-001_generate_compose"]
 description = "Initialize command for devcontainer"
 
 [tasks.dc-init-001_generate_compose]
 description = "Generate compose.yml for devcontainer"
 run = '.devcontainer/scripts/i_generate_compose.sh --verbose -o {{vars.OUTPUT_COMPOSE_FILE}} .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
-
-[tasks.dc-init-002_check_project]
-description = "Check docker compose project override"
-run = '.devcontainer/scripts/i_check_project.sh {{vars.OUTPUT_COMPOSE_FILE}}'
-
 
 # devcontainer post_create command task
 [tasks.dc-post_create-001_install_pre_commit_hook]
