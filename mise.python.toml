@@ -1,0 +1,17 @@
+[tools]
+uv = "0.6.14"
+ruff = "0.11.5"
+
+[env]
+# consolidate uv-related cache in workspace for hardlink in container
+MYPY_CACHE_DIR = "{{config_root}}/.cache/mypy/cache"
+RUFF_CACHE_DIR = "{{config_root}}/.cache/ruff/cache"
+UV_CACHE_DIR = "{{config_root}}/.cache/uv/cache"
+UV_PYTHON_INSTALL_DIR = "{{config_root}}/.cache/uv/python"
+UV_TOOL_DIR = "{{config_root}}/.cache/uv/tool"
+UV_TOOL_BIN_DIR = "{{config_root}}/.cache/uv/tool_bin"
+_.path = ["{{config_root}}/.cache/uv/tool_bin"]
+
+[settings]
+# python management is transferred to uv
+disable_tools = ["python"]
