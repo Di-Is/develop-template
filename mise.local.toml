@@ -8,4 +8,4 @@ description = "Post create command for devcontainer"
 
 [tasks.dc-post_create-1000_setup_chezmoi]
 run = '.devcontainer/scripts/_pc_setup_chezmoi.sh ${GITHUB_USERNAME}'
-description = "Create dotfiles mount point"
+description = "Setup environment for chezmoi"
