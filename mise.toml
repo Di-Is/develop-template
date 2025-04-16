@@ -12,7 +12,7 @@ description = "Initialize command for devcontainer"
 
 [tasks.dc-init-001_generate_compose]
 description = "Generate compose.yml for devcontainer"
-run = '.devcontainer/scripts/i_generate_compose.sh --verbose -o {{vars.OUTPUT_COMPOSE_FILE}} .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
+run = '.devcontainer/scripts/i_generate_compose.sh --verbose --output .devcontainer/compose.yml .devcontainer/compose/base/compose.yml .devcontainer/compose/extend'
 
 # devcontainer post_create command task
 [tasks.dc-post_create-001_install_pre_commit_hook]
