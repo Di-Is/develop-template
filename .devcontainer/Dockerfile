@@ -33,8 +33,8 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 # Install mise (for uv management)
 RUN curl https://mise.run | MISE_INSTALL_PATH="/usr/local/bin/mise" sh
 RUN mkdir -p /etc/mise && \
-    echo "[settings]\ntrusted_config_paths = ['~/']" > /etc/mise/config.toml
-RUN echo 'eval "$(mise activate bash)"' >> /etc/bash.bashrc
+    echo "[settings]\ntrusted_config_paths = ['~/']" > /etc/mise/config.toml && \
+    echo 'eval "$(mise activate bash)"' >> /etc/bash.bashrc
 
 ARG USER_ID
 ARG _USERNAME=ubuntu
